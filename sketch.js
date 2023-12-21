@@ -82,7 +82,7 @@ function setup() {
 	loadShapes();
 	saveShapes();
 
-	textSize(20);
+	textSize(10);
 	noStroke();
 
 	// soundSetup(mySound6);
@@ -101,6 +101,7 @@ function draw() {
 
 	speechToImage();
 
+	
 	drawShapes();
 	drawTextureShapes();
 	drawlines();

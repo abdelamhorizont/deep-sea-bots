@@ -42,7 +42,7 @@ let softBrushBrightness = [];
 let loadedSoftColCount = 0;
 
 function loadShapes() {
-    anim = nichts;
+    anim = Anglerfisch;
     amplitude = new p5.Amplitude();
 
     textureShapes[0] = new Array();
@@ -167,35 +167,36 @@ function drawLoadedShapes(shape) {
     tex.vertex(shape.layer[0].shapes[0].pos[0][0], shape.layer[0].shapes[0].pos[0][1]);
 
     shapeLength = shape.layer[0].shapes[0].pos.length;
-
+    
     for (var i = 0; i < shapeLength; i++) {
         if (shape.layer[0].shapes[0].pos[i] != undefined) {
-
+            
             if (shape.layer[0].shapes[0].osc != 0) {
                 shape.layer[0].shapes[0].addPos += shape.layer[0].shapes[0].osc;
                 // shape.layer[0].shapes[0].addPos += noise(i) ;
-
+                
             } else {
                 shape.layer[0].shapes[0].addPos += float(OscSlider.value);
             }
-
+            
             osc = createVector(sin(shape.layer[0].shapes[0].addPos) * 4, cos(shape.layer[0].shapes[0].addPos) * 4);
-
+            
             if (dissolve) {
                 let x = map(sin(i / 20), 0, 1, -2, 2);
                 let y = map(cos(i / 20), 0, 1, -2, 2);
                 osc = createVector(noise(shape.layer[0].shapes[0].addPos) * x, noise(shape.layer[0].shapes[0].addPos) * y);
             }
-
+            
             tex.curveVertex(shape.layer[0].shapes[0].pos[i][0], shape.layer[0].shapes[0].pos[i][1]);
-
+            
             // loadedShapes[i].curvePoint();
             shape.layer[0].shapes[0].pos[i][0] += osc.x;
             shape.layer[0].shapes[0].pos[i][1] += osc.y;
-
+            
         }
     }
-
+    
+    // scale(0.8);
     tex.vertex(shape.layer[0].shapes[0].pos[0][0], shape.layer[0].shapes[0].pos[0][1]);
     tex.vertex(shape.layer[0].shapes[0].pos[0][0], shape.layer[0].shapes[0].pos[0][1]);
     tex.endContour();
@@ -209,6 +210,7 @@ function drawLoadedShapes(shape) {
     //plain shapes in color
     for (var j = 1; j < shape.layer[0].shapes.length; j++) {
         push();
+        
         if (shape.layer[0].shapes[j] != undefined) {
             if (shape.layer[0].shapes[j].color != undefined) {
 
@@ -954,6 +956,7 @@ function drawShapes() {
 
     for (var i = 0; i < shapes.length; i++) {
         beginShape();
+        
         for (var j = 0; j < shapes[i].length; j++) {
             shapes[i][j].curvePoint();
         }
